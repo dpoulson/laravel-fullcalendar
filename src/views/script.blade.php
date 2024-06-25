@@ -1,9 +1,11 @@
 <script>
-    // Wait for DOMContentLoaded event to emulate <script defer>
-    // to ensure jQuery has loaded if it also has a defer attribute
-    window.addEventListener('DOMContentLoaded', function() {
-        $(document).ready(function(){
-            $('#calendar-{{ $id }}').fullCalendar({!! $options !!});
-        });
+    var calendar;
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar-{{ $id }}')
+        calendar = new FullCalendar.Calendar(calendarEl,
+            {!! $options !!},
+        );
+        calendar.render();
     });
 </script>
+
